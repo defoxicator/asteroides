@@ -21,6 +21,7 @@ def asteroids(number_of_asteroids, player_position, batch=None):
 
 
 def player_lives(number_of_icons, batch=None):
+    """Generate sprites placement for player lives."""
     player_lives_count = []
     for i in range(number_of_icons):
         new_sprite = pyglet.sprite.Sprite(img=resources.player_image,
@@ -28,6 +29,7 @@ def player_lives(number_of_icons, batch=None):
         new_sprite.scale = 0.5
         player_lives_count.append(new_sprite)
     return player_lives_count
+
 
 def distance(point_1=(0, 0), point_2=(0, 0)):
     """Returns the distance between two points"""
