@@ -23,6 +23,9 @@ player_lives = load.player_lives(number_of_icons=3, batch=main_batch)
 asteroids = load.asteroids(number_of_asteroids=3, player_position=player_ship.position,
                            batch=main_batch)
 
+# Storing game objects to use in update loop
+game_objects = [player_ship] + asteroids
+
 
 @game_window.event
 def on_draw():
@@ -30,5 +33,12 @@ def on_draw():
     main_batch.draw()
 
 
+def update(dt):
+    for obj in game_objects:
+        obj.update(dt)
+
+
 if __name__ == '__main__':
+    # Pyglet clock counting dt
+    pyglet.clock.schedule_interval(update, 1 / 120.0)
     pyglet.app.run()

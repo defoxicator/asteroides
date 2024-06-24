@@ -6,15 +6,8 @@ class PhysicalObject(pyglet.sprite.Sprite):
     """Motion class."""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         self.velocity_x: float = 0.0
         self.velocity_y: float = 0.0
-
-    def update_loop(self, dt):
-        """Update loop"""
-        self.x += self.velocity_x * dt
-        self.y += self.velocity_y * dt
-        self.check_boundaries()
 
     def check_boundaries(self):
         min_x = -self.image.width / 2
@@ -29,3 +22,9 @@ class PhysicalObject(pyglet.sprite.Sprite):
             self.y = max_y
         elif self.y > max_y:
             self.y = min_y
+
+    def update_loop(self, dt):
+        """Update loop"""
+        self.x += self.velocity_x * dt
+        self.y += self.velocity_y * dt
+        self.check_boundaries()
