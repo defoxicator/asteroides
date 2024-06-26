@@ -1,4 +1,4 @@
-from game import resources, load
+from game import resources, load, player
 import pyglet
 
 # Set up a window
@@ -8,15 +8,14 @@ game_window = pyglet.window.Window(800, 600)
 main_batch = pyglet.graphics.Batch()
 
 # Set up top labels
-score_label = pyglet.text.Label(text='Score: 0', x=10, y=460, batch=main_batch)
+score_label = pyglet.text.Label(text='Score: 0', x=10, y=575, batch=main_batch)
 level_label = pyglet.text.Label(text='My Amazing Game',
-                                x=game_window.width//2,
-                                y=game_window.height-50,
+                                x=400, y=575,
                                 anchor_x='center',
                                 batch=main_batch)
 
 # Initialize player
-player_ship = pyglet.sprite.Sprite(img=resources.player_image, x=400, y=300, batch=main_batch)
+player_ship = player.Player(x=400, y=300, batch=main_batch)
 player_lives = load.player_lives(number_of_icons=3, batch=main_batch)
 
 # Initialize asteroids
@@ -26,6 +25,8 @@ asteroids = load.asteroids(number_of_asteroids=3, player_position=player_ship.po
 # Storing game objects to use in update loop
 game_objects = [player_ship] + asteroids
 
+# Moving the ship
+game_window.push_handlers(player_ship)
 
 @game_window.event
 def on_draw():

@@ -4,6 +4,7 @@ import pyglet
 # Motion
 class PhysicalObject(pyglet.sprite.Sprite):
     """Motion class."""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.velocity_x: float = 0.0
@@ -23,7 +24,7 @@ class PhysicalObject(pyglet.sprite.Sprite):
         elif self.y > max_y:
             self.y = min_y
 
-    def update_loop(self, dt):
+    def update(self, dt):
         """Update loop"""
         self.x += self.velocity_x * dt
         self.y += self.velocity_y * dt

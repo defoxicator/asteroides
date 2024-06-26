@@ -14,7 +14,8 @@ def asteroids(number_of_asteroids, player_position, batch=None):
     asteroids_coordinates: list = []
     for i in range(number_of_asteroids):
         asteroid_x, asteroid_y, _ = player_position
-        while distance((asteroid_x, asteroid_y), player_position) < 100:
+        while distance(point_1=(asteroid_x, asteroid_y),
+                       point_2=player_position) < 100:
             asteroid_x = random.randint(0, 800)
             asteroid_y = random.randint(0, 600)
         new_asteroid = physicalobject.PhysicalObject(img=resources.asteroid_image,
