@@ -38,6 +38,19 @@ def update(dt):
     for obj in game_objects:
         obj.update(dt)
 
+    for (i, obj1) in enumerate(game_objects):
+        for (j, obj2) in list(enumerate(game_objects))[i+1:]:
+            # obj2 = game_objects[j]
+
+            if not obj1.dead and not obj2.dead:
+                if obj1.collides_with(obj2):
+                    obj1.handle_collision_with(obj2)
+                    obj2.handle_collision_with(obj1)
+
+    for to_remove in [obj for obj in game_objects if obj.dead]:
+        to_remove.delete()
+        game_objects.remove(to_remove)
+
 
 if __name__ == '__main__':
     # Pyglet clock counting dt

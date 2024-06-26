@@ -39,3 +39,7 @@ class Player(physicalobject.PhysicalObject):
             self.engine_sprite.visible = True
         else:
             self.engine_sprite.visible = False
+
+    def delete(self):
+        self.engine_sprite.delete()
+        super(Player, self).delete()
