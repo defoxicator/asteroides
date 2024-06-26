@@ -26,7 +26,7 @@ asteroids = load.asteroids(number_of_asteroids=3, player_position=player_ship.po
 game_objects = [player_ship] + asteroids
 
 # Moving the ship
-game_window.push_handlers(player_ship)
+game_window.push_handlers(player_ship.key_handler)
 
 @game_window.event
 def on_draw():
