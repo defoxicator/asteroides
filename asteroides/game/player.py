@@ -1,3 +1,4 @@
+import pyglet.sprite
 from pyglet.window import key
 from . import physicalobject, resources
 import math
@@ -11,6 +12,9 @@ class Player(physicalobject.PhysicalObject):
         self.rotate_speed = 200.0
 
         self.key_handler = key.KeyStateHandler()
+
+        self.engine_sprite = pyglet.sprite.Sprite(img=resources.engine_image, *args, **kwargs)
+        self.engine_sprite.visible = False
 
     def update(self, dt):
         super(Player, self).update(dt)
@@ -27,3 +31,11 @@ class Player(physicalobject.PhysicalObject):
             force_y = math.sin(angle_radians) * self.thrust * dt
             self.velocity_x += force_x
             self.velocity_y += force_y
+
+            # Engine flame
+            self.engine_sprite.rotation = self.rotation
+            self.engine_sprite.x = self.x
+            self.engine_sprite.y = self.y
+            self.engine_sprite.visible = True
+        else:
+            self.engine_sprite.visible = False
