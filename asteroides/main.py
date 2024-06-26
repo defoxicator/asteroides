@@ -28,6 +28,7 @@ game_objects = [player_ship] + asteroids
 # Moving the ship
 game_window.push_handlers(player_ship.key_handler)
 
+
 @game_window.event
 def on_draw():
     game_window.clear()
@@ -35,9 +36,6 @@ def on_draw():
 
 
 def update(dt):
-    for obj in game_objects:
-        obj.update(dt)
-
     for (i, obj1) in enumerate(game_objects):
         for (j, obj2) in list(enumerate(game_objects))[i+1:]:
             # obj2 = game_objects[j]
@@ -47,9 +45,18 @@ def update(dt):
                     obj1.handle_collision_with(obj2)
                     obj2.handle_collision_with(obj1)
 
+    to_add: list = []
+
+    for obj in game_objects:
+        obj.update(dt)
+        to_add.extend(obj.new_objects)
+        obj.new_objects = []
+
     for to_remove in [obj for obj in game_objects if obj.dead]:
         to_remove.delete()
         game_objects.remove(to_remove)
+
+    game_objects.extend(to_add)
 
 
 if __name__ == '__main__':

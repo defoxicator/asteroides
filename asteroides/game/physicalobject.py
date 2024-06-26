@@ -7,10 +7,14 @@ class PhysicalObject(pyglet.sprite.Sprite):
     """Motion class."""
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super(PhysicalObject, self).__init__(*args, **kwargs)
+
         self.velocity_x: float = 0.0
         self.velocity_y: float = 0.0
-        self.dead = False
+
+        self.dead: bool = False
+        self.new_objects: list = []
+        self.event_handlers = []
 
     def check_boundaries(self):
         min_x = -self.image.width / 2
