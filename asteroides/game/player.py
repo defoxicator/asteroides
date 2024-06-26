@@ -19,6 +19,8 @@ class Player(physicalobject.PhysicalObject):
         self.key_handler = key.KeyStateHandler()
         self.event_handlers = [self, self.key_handler]
 
+        self.reacts_to_bullets = False
+
     def update(self, dt):
         super(Player, self).update(dt)
 
@@ -43,8 +45,7 @@ class Player(physicalobject.PhysicalObject):
         else:
             self.engine_sprite.visible = False
 
-    def on_key_press(self, symbol, modifiers):
-        if symbol == key.SPACE:
+        if self.key_handler[key.SPACE]:
             self.fire()
 
     def fire(self):

@@ -16,6 +16,9 @@ class PhysicalObject(pyglet.sprite.Sprite):
         self.new_objects: list = []
         self.event_handlers = []
 
+        self.reacts_to_bullets = True
+        self.is_bullet = False
+
     def check_boundaries(self):
         min_x = -self.image.width / 2
         min_y = -self.image.height / 2
@@ -37,10 +40,18 @@ class PhysicalObject(pyglet.sprite.Sprite):
         self.check_boundaries()
 
     def collides_with(self, other_object):
+        if not self.reacts_to_bullets and other_object.is_bullet:
+            return False
+        if self.is_bullet and not other_object.reacts_to_bullets:
+            return False
+
         collision_distance = self.image.width / 2 + other_object.image.width / 2
         actual_distance = util.distance(self.position, other_object.position)
 
         return actual_distance <= collision_distance
 
     def handle_collision_with(self, other_object):
-        self.dead = True
+        if self.__class__ != other_object.__class__:
+            self.dead = True
+        else:
+            self.dead = False
