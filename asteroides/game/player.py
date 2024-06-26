@@ -49,9 +49,6 @@ class Player(physicalobject.PhysicalObject):
         if symbol == key.SPACE:
             self.fire()
 
-    def on_key_release(self, symbol, modifiers):
-        pass
-
     def fire(self):
         angle_radians = -math.radians(self.rotation)
 
@@ -59,6 +56,7 @@ class Player(physicalobject.PhysicalObject):
         ship_radius = self.image.width / 2
         bullet_x = self.x + math.cos(angle_radians) * ship_radius
         bullet_y = self.y + math.sin(angle_radians) * ship_radius
+        print(self.rotation)
         new_bullet = bullet.Bullet(bullet_x, bullet_y, batch=self.batch)
 
         # Bullet velocity
