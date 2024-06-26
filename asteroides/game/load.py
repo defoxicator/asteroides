@@ -1,4 +1,4 @@
-from . import resources, physicalobject, util
+from . import resources, physicalobject, util, asteroid
 import pyglet
 import random
 
@@ -12,9 +12,7 @@ def asteroids(number_of_asteroids, player_position, batch=None):
                             point_2=player_position) < 100:
             asteroid_x = random.randint(0, 800)
             asteroid_y = random.randint(0, 600)
-        new_asteroid = physicalobject.PhysicalObject(img=resources.asteroid_image,
-                                                     x=asteroid_x, y=asteroid_y,
-                                                     batch=batch)
+        new_asteroid = asteroid.Asteroid(x=asteroid_x, y=asteroid_y, batch=batch)
         new_asteroid.rotation = random.randint(0, 360)
         new_asteroid.velocity_x = random.random() * 40
         new_asteroid.velocity_y = random.random() * 40
