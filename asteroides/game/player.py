@@ -49,9 +49,6 @@ class Player(physicalobject.PhysicalObject):
         if symbol == key.SPACE:
             self.fire()
 
-    def on_key_release(self, symbol, modifiers):
-        pass
-
     def fire(self):
         angle_radians = -math.radians(self.rotation)
 
@@ -60,6 +57,7 @@ class Player(physicalobject.PhysicalObject):
         bullet_x = self.x + math.cos(angle_radians) * ship_radius
         bullet_y = self.y + math.sin(angle_radians) * ship_radius
         new_bullet = bullet.Bullet(bullet_x, bullet_y, batch=self.batch)
+        new_bullet.rotation = self.rotation
 
         # Bullet velocity
         bullet_vx = self.velocity_x + math.cos(angle_radians) * self.bullet_speed
