@@ -1,7 +1,8 @@
 # pyglet-asteroids
 Clone of Asteroids game developed using Pyglet / Python.
 
-This repository is there to track my progress on learning basics of Pyglet with official tutorial.
+First endevour into the world of Game Dev.
+Basics of the game were covered with the help of official Pyglet tutorial and the rest is my tinkering with the code.
 
 ---
 ### Links:
