@@ -45,8 +45,12 @@ class Player(physicalobject.PhysicalObject):
         else:
             self.engine_sprite.visible = False
 
-        if self.key_handler[key.SPACE]:
+    def on_key_press(self, symbol, modifiers):
+        if symbol == key.SPACE:
             self.fire()
+
+    def on_key_release(self, symbol, modifiers):
+        pass
 
     def fire(self):
         angle_radians = -math.radians(self.rotation)
@@ -65,6 +69,8 @@ class Player(physicalobject.PhysicalObject):
 
         # Add bullet to object list
         self.new_objects.append(new_bullet)
+
+        resources.bullet_sound.play()
 
     def delete(self):
         self.engine_sprite.delete()

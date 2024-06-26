@@ -28,6 +28,10 @@ game_objects = [player_ship] + asteroids
 # Moving the ship
 game_window.push_handlers(player_ship.key_handler)
 
+for obj in game_objects:
+    for handler in obj.event_handlers:
+        game_window.push_handlers(handler)
+
 
 @game_window.event
 def on_draw():
