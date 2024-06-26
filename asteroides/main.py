@@ -1,4 +1,4 @@
-from game import resources, load, player
+from game import load, player
 import pyglet
 
 # Set up a window
@@ -8,7 +8,8 @@ game_window = pyglet.window.Window(800, 600)
 main_batch = pyglet.graphics.Batch()
 
 # Set up top labels
-score_label = pyglet.text.Label(text='Score: 0', x=10, y=575, batch=main_batch)
+score_count: int = 0
+score_label = pyglet.text.Label(text=f'Score: {score_count}', x=10, y=575, batch=main_batch)
 level_label = pyglet.text.Label(text='My Amazing Game',
                                 x=400, y=575,
                                 anchor_x='center',
@@ -42,7 +43,6 @@ def on_draw():
 def update(dt):
     for (i, obj1) in enumerate(game_objects):
         for (j, obj2) in list(enumerate(game_objects))[i+1:]:
-            # obj2 = game_objects[j]
 
             if not obj1.dead and not obj2.dead:
                 if obj1.collides_with(obj2):

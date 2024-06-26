@@ -68,6 +68,7 @@ class Player(physicalobject.PhysicalObject):
         # Add bullet to object list
         self.new_objects.append(new_bullet)
 
+        # Add sound to shooting
         resources.bullet_sound.play()
 
     def delete(self):
