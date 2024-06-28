@@ -1,5 +1,8 @@
-from game import load, player
+"""Main module of the game"""
+
 import pyglet
+from game import load, player
+
 
 # Set up a window
 game_window = pyglet.window.Window(800, 600)
@@ -36,14 +39,15 @@ for obj in game_objects:
 
 @game_window.event
 def on_draw():
+    """Drawing to screen"""
     game_window.clear()
     main_batch.draw()
 
 
 def update(dt):
+    """Update loop"""
     for (i, obj1) in enumerate(game_objects):
-        for (j, obj2) in list(enumerate(game_objects))[i+1:]:
-
+        for (_, obj2) in list(enumerate(game_objects))[i+1:]:
             if not obj1.dead and not obj2.dead:
                 if obj1.collides_with(obj2):
                     obj1.handle_collision_with(obj2)
