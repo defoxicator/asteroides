@@ -1,7 +1,7 @@
-import pyglet
-from pyglet.window import key
 from . import physicalobject, resources, bullet
+from pyglet.window import key
 import math
+import pyglet
 
 
 class Player(physicalobject.PhysicalObject):
@@ -68,6 +68,7 @@ class Player(physicalobject.PhysicalObject):
         # Add bullet to object list
         self.new_objects.append(new_bullet)
 
+        # Add sound to shooting
         resources.bullet_sound.play()
 
     def delete(self):

@@ -1,4 +1,4 @@
-from . import resources, physicalobject, util, asteroid
+from . import resources, util, asteroid
 import pyglet
 import random
 
@@ -20,10 +20,10 @@ def asteroids(number_of_asteroids, player_position, batch=None):
     return asteroids_coordinates
 
 
-def player_lives(number_of_icons, batch=None):
+def player_lives(number_of_lives, batch=None):
     """Generate sprites placement for player lives."""
     player_lives_count = []
-    for i in range(number_of_icons):
+    for i in range(number_of_lives):
         new_sprite = pyglet.sprite.Sprite(img=resources.player_image,
                                           x=780-i*35, y=585, batch=batch)
         new_sprite.scale = 0.5

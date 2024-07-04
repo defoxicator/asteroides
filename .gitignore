@@ -1,3 +1,5 @@
 # Basic .gitignore
 .venv
 .idea
+TODO.md
+__pycache__

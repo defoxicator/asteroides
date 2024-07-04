@@ -1,5 +1,7 @@
-from game import resources, load, player
+"""Main module of the game"""
+from game import load, player
 import pyglet
+
 
 # Set up a window
 game_window = pyglet.window.Window(800, 600)
@@ -8,15 +10,18 @@ game_window = pyglet.window.Window(800, 600)
 main_batch = pyglet.graphics.Batch()
 
 # Set up top labels
-score_label = pyglet.text.Label(text='Score: 0', x=10, y=575, batch=main_batch)
-level_label = pyglet.text.Label(text='My Amazing Game',
+score_count: int = 0
+score_label = pyglet.text.Label(text=f'Score: 0', x=10, y=575, batch=main_batch)
+level_label = pyglet.text.Label(text='Asteroides',
                                 x=400, y=575,
                                 anchor_x='center',
                                 batch=main_batch)
 
 # Initialize player
 player_ship = player.Player(x=400, y=300, batch=main_batch)
-player_lives = load.player_lives(number_of_icons=3, batch=main_batch)
+
+# Initialize player lives
+player_lives = load.player_lives(number_of_lives=3, batch=main_batch)
 
 # Initialize asteroids
 asteroids = load.asteroids(number_of_asteroids=3, player_position=player_ship.position,
@@ -35,15 +40,17 @@ for obj in game_objects:
 
 @game_window.event
 def on_draw():
+    """Drawing to screen"""
     game_window.clear()
     main_batch.draw()
 
 
 def update(dt):
-    for (i, obj1) in enumerate(game_objects):
-        for (j, obj2) in list(enumerate(game_objects))[i+1:]:
-            # obj2 = game_objects[j]
+    """Update loop"""
+    global score_count
 
+    for (i, obj1) in enumerate(game_objects):
+        for (_, obj2) in list(enumerate(game_objects))[i+1:]:
             if not obj1.dead and not obj2.dead:
                 if obj1.collides_with(obj2):
                     obj1.handle_collision_with(obj2)
@@ -57,6 +64,11 @@ def update(dt):
         obj.new_objects = []
 
     for to_remove in [obj for obj in game_objects if obj.dead]:
+        # Scoring
+        if to_remove.is_scorable:
+            score_count += 1
+            score_label.text = f'Score: {score_count}'
+
         to_remove.delete()
         game_objects.remove(to_remove)
 

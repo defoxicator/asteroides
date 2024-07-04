@@ -1,5 +1,5 @@
-import pyglet
 from . import util
+import pyglet
 
 
 # Motion
@@ -18,6 +18,7 @@ class PhysicalObject(pyglet.sprite.Sprite):
 
         self.reacts_to_bullets = True
         self.is_bullet = False
+        self.is_scorable = False
 
     def check_boundaries(self):
         min_x = -self.image.width / 2

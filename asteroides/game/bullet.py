@@ -1,5 +1,5 @@
-import pyglet
 from . import physicalobject, resources
+import pyglet
 
 
 class Bullet(physicalobject.PhysicalObject):
