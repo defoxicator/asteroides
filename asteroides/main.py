@@ -11,8 +11,8 @@ main_batch = pyglet.graphics.Batch()
 
 # Set up top labels
 score_count: int = 0
-score_label = pyglet.text.Label(text=f'Score: {score_count}', x=10, y=575, batch=main_batch)
-level_label = pyglet.text.Label(text='My Amazing Game',
+score_label = pyglet.text.Label(text=f'Score: 0', x=10, y=575, batch=main_batch)
+level_label = pyglet.text.Label(text='Asteroides',
                                 x=400, y=575,
                                 anchor_x='center',
                                 batch=main_batch)
@@ -21,7 +21,7 @@ level_label = pyglet.text.Label(text='My Amazing Game',
 player_ship = player.Player(x=400, y=300, batch=main_batch)
 
 # Initialize player lives
-player_lives = load.player_lives(number_of_icons=3, batch=main_batch)
+player_lives = load.player_lives(number_of_lives=3, batch=main_batch)
 
 # Initialize asteroids
 asteroids = load.asteroids(number_of_asteroids=3, player_position=player_ship.position,
