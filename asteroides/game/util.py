@@ -1,4 +1,3 @@
-import pyglet
 import math
 
 

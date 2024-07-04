@@ -1,5 +1,4 @@
 from . import physicalobject, resources
-import pyglet
 import random
 
 

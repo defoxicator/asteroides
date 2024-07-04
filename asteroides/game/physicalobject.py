@@ -1,5 +1,5 @@
-import pyglet
 from . import util
+import pyglet
 
 
 # Motion

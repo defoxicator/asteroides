@@ -1,4 +1,4 @@
-from . import resources, physicalobject, util, asteroid
+from . import resources, util, asteroid
 import pyglet
 import random
 

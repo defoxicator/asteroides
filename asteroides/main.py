@@ -1,7 +1,6 @@
 """Main module of the game"""
-
+from game import load, player, score
 import pyglet
-from game import load, player
 
 
 # Set up a window
@@ -20,6 +19,8 @@ level_label = pyglet.text.Label(text='My Amazing Game',
 
 # Initialize player
 player_ship = player.Player(x=400, y=300, batch=main_batch)
+
+# Initialize player lives
 player_lives = load.player_lives(number_of_icons=3, batch=main_batch)
 
 # Initialize asteroids
