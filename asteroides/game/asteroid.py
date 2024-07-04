@@ -6,6 +6,7 @@ class Asteroid(physicalobject.PhysicalObject):
     def __init__(self, *args, **kwargs):
         super(Asteroid, self).__init__(resources.asteroid_image, *args, **kwargs)
         self.rotate_speed = random.random() * 100.0 - 50.0
+        self.is_scorable = True
 
     def handle_collision_with(self, other_object):
         super(Asteroid, self).handle_collision_with(other_object)

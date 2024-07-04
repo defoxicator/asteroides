@@ -1,5 +1,5 @@
 """Main module of the game"""
-from game import load, player, score
+from game import load, player
 import pyglet
 
 
@@ -47,6 +47,8 @@ def on_draw():
 
 def update(dt):
     """Update loop"""
+    global score_count
+
     for (i, obj1) in enumerate(game_objects):
         for (_, obj2) in list(enumerate(game_objects))[i+1:]:
             if not obj1.dead and not obj2.dead:
@@ -62,6 +64,11 @@ def update(dt):
         obj.new_objects = []
 
     for to_remove in [obj for obj in game_objects if obj.dead]:
+        # Scoring
+        if to_remove.is_scorable:
+            score_count += 1
+            score_label.text = f'Score: {score_count}'
+
         to_remove.delete()
         game_objects.remove(to_remove)
 
