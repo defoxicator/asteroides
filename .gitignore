@@ -2,4 +2,4 @@
 .venv
 .idea
 TODO.md
-**/__pycache__/
+__pycache__
