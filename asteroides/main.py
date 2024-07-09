@@ -27,6 +27,23 @@ player_lives = load.player_lives(number_of_lives=3, batch=main_batch)
 asteroids = load.asteroids(number_of_asteroids=3, player_position=player_ship.position,
                            batch=main_batch)
 
+# Game over text
+game_over_overlay = pyglet.text.Label(text='GAME OVER',
+                                              color=[255, 255, 255, 135],
+                                              font_size=50,
+                                              x=400, y=-100,
+                                              anchor_x='center',
+                                              anchor_y='center',
+                                              batch=main_batch)
+
+game_over_screen = pyglet.text.Label(text='GAME OVER',
+                                     color=[254, 32, 32, 185],
+                                     font_size=48,
+                                     x=400, y=-100,
+                                     anchor_x='center',
+                                     anchor_y='center',
+                                     batch=main_batch)
+
 # Storing game objects to use in update loop
 game_objects = [player_ship] + asteroids
 
@@ -73,6 +90,11 @@ def update(dt):
         game_objects.remove(to_remove)
 
     game_objects.extend(to_add)
+
+    # Game Over screen
+    if player_ship.dead:
+        game_over_overlay.y = 300
+        game_over_screen.y = 300
 
 
 if __name__ == '__main__':
